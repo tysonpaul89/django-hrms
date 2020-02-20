@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Third Party Apps
+    # Local Apps
+    'users.apps.UsersConfig', # Contains custom user model.
 ]
 
 MIDDLEWARE = [
@@ -118,3 +121,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Overrides Django's auth to user CustomUser modal other than its own.
+AUTH_USER_MODEL = 'users.CustomUser'
