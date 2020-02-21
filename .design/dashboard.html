@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<!-- saved from url=(0033)http://127.0.0.1:8002/attendance/ -->
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="http://127.0.0.1:8002/static/img/favicons/favicon.ico">
+
+    <title>Django HRMS | Attendance</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="./assets/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="./assets/dashboard.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="./assets/styles.css" rel="stylesheet">
+
+</head>
+
+<body data-gr-c-s-loaded="true">
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Django-HRMS</a>
+        <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+                <a class="nav-link" href="#">Sign out</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column mb-2">
+                        <li class="nav-item">
+                            <a class="nav-link dashboard active" href="#">
+                                <span data-feather="user"></span>
+                                dashboard
+                            </a>
+                        </li>
+                    </ul>
+                    <h6
+                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                        <span>Attendance</span>
+                    </h6>
+                    <ul class="nav flex-column mb-2">
+                        <li class="nav-item">
+                            <a class="nav-link attendance active" href="#">
+                                <span data-feather="user"></span>
+                                My Attendance
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link team-attendance" href="##">
+                                <span data-feather="users"></span>
+                                Team Attendance
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+                <div
+                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Dashboard</h1>
+                </div>
+
+                <!-- Dashboard -->
+                <div class="col-md-12">
+                    <div class="row">
+
+                        <!-- Last Punch In/Out -->
+                        <div class="col-md-3">
+                            <div class="card text-white bg-secondary attendance-summary">
+                                <div class="card-body">
+                                <table>
+                                    <tbody>
+                                    <tr>
+                                        <td><span class="h5">Last Punch In at</span></td>
+                                        <td>&nbsp;</td>
+                                        <td><span class="h4">08:30</span>&nbsp;<small>hrs : mins</small></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+                                <hr>
+
+                                <table>
+                                    <tbody>
+                                    <tr>
+                                        <td><span class="h5">Last Punch Out at</span></td>
+                                        <td>&nbsp;</td>
+                                        <td><span class="h4">09:10</span>&nbsp;<small>hrs : mins</small></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.col-md-3 -->
+
+                        <!-- Todays Attendance -->
+                        <div class="col-md-3">
+                            <div class="card text-white bg-secondary attendance-summary">
+                                <div class="card-body">
+                                <table>
+                                    <tbody>
+                                    <tr>
+                                        <td><span class="h5">Gross Hours</span></td>
+                                        <td>&nbsp;</td>
+                                        <td><span class="h4">09:30</span>&nbsp;<small>hrs : mins</small></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+                                <hr>
+
+                                <table>
+                                    <tbody>
+                                    <tr>
+                                        <td><span class="h5">Effective Hours</span></td>
+                                        <td>&nbsp;  </td>
+                                        <td><span class="h4">08:10</span>&nbsp;<small>hrs : mins</small></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.col-md-3 -->
+
+                        <!-- Attendance Percentage -->
+                        <div class="col-md-3">
+                            <div class="card text-white bg-secondary attendance-summary">
+                                <div class="card-body">
+                                <table>
+                                    <tbody>
+                                    <tr>
+                                        <td><span class="h5">Avg Hours / Day</span></td>
+                                        <td>&nbsp;</td>
+                                        <td><span class="h4">--</span>&nbsp;<small>hrs : mins</small></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+                                <hr>
+
+                                <table>
+                                    <tbody>
+                                    <tr>
+                                        <td><span class="h5">On Time Arrival</span></td>
+                                        <td>&nbsp;&nbsp;&nbsp;</td>
+                                        <td><span class="h4">--%</span></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.col-md-3 -->
+
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.col-md-12 -->
+
+                <div class="col-md-12 mt-5">
+                    <div class="card bg-light">
+                    <div class="card-body">
+                        <h4 class="card-title">Clock In/Out</h4>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button class="btn btn-lg btn-block btn-primary">Clock In&nbsp;<span data-feather="log-in">&nbsp;&nbsp;&nbsp;</span></button>
+                            </div>
+
+                            <div class="col-md-12 mt-2">
+                                <button class="btn btn-lg btn-block btn-danger" disabled="disabled">Clock Out&nbsp;<span data-feather="log-out"></span></button>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <input type="hidden" name="active_nav_class" id="active-nav-class" value="attendance">
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="./assets/jquery-3.4.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/static/js/jquery-3.4.1.min.js"><\/script>')</script>
+    <script src="./assets/popper.min.js"></script>
+    <script src="./assets/bootstrap.min.js"></script>
+
+    <!-- Icons -->
+    <script src="./assets/feather.min.js"></script>
+    <script>
+        // Initalizes feather icons plugin
+        // URL: https://feathericons.com/
+        feather.replace()
+    </script>    
+
+    <script>
+        $(document).ready(function () {
+            // To highlight current page link in side navigation bar
+            var activeNavClass = $.trim($('#active-nav-class').val())
+            if (activeNavClass.length) {
+                $('.' + activeNavClass).addClass('active')
+            }
+        });
+    </script>
+
+</body>
+
+</html>
