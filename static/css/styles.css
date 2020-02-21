@@ -1,0 +1,4 @@
+/* To Show required filed asterisk(*) in red */
+.requiredField > .asteriskField {
+    color: red;
+}
