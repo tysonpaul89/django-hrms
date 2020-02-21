@@ -45,6 +45,7 @@ INSTALLED_APPS = [
 
     # Local Apps
     'users.apps.UsersConfig', # Contains custom user model.
+    'attendance.apps.AttendanceConfig',
 ]
 
 MIDDLEWARE = [

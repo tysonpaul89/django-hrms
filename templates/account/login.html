@@ -13,7 +13,7 @@
             {{ form|crispy }}
             <button class="btn btn-primary" type="submit">Login In</button>
         </form>
-        <p class="mt-1">Don't have an account? click <a href="/auth/signup/">here</a> to register.</p>
+        <p class="mt-1">Don't have an account? click <a href="{% url 'account_signup' %}">here</a> to register.</p>
     </div>
    </div>
 {% endblock content %}
