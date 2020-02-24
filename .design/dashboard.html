@@ -8,18 +8,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="http://127.0.0.1:8002/static/img/favicons/favicon.ico">
+    <link rel="icon" href="./assets/img/favicons/favicon.ico">
 
     <title>Django HRMS | Attendance</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="./assets/bootstrap.min.css" rel="stylesheet">
+    <link href="./assets/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="./assets/dashboard.css" rel="stylesheet">
+    <link href="./assets/css/dashboard.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="./assets/styles.css" rel="stylesheet">
+    <link href="./assets/css/styles.css" rel="stylesheet">
 
 </head>
 
@@ -37,9 +37,9 @@
         <div class="row">
             <nav class="col-md-2 d-none d-md-block bg-light sidebar">
                 <div class="sidebar-sticky">
-                    <ul class="nav flex-column mb-2">
+                    <ul class="nav flex-column mb-2 mt-5">
                         <li class="nav-item">
-                            <a class="nav-link dashboard active" href="#">
+                            <a class="nav-link dashboard" href="./dashboard.html">
                                 <span data-feather="user"></span>
                                 dashboard
                             </a>
@@ -51,13 +51,13 @@
                     </h6>
                     <ul class="nav flex-column mb-2">
                         <li class="nav-item">
-                            <a class="nav-link attendance active" href="#">
+                            <a class="nav-link attendance" href="./attendance.html">
                                 <span data-feather="user"></span>
                                 My Attendance
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link team-attendance" href="##">
+                            <a class="nav-link team-attendance" href="./team-attendance.html">
                                 <span data-feather="users"></span>
                                 Team Attendance
                             </a>
@@ -192,22 +192,22 @@
         </div>
     </div>
 
-    <input type="hidden" name="active_nav_class" id="active-nav-class" value="attendance">
+    <input type="hidden" name="active_nav_class" id="active-nav-class" value="dashboard">
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="./assets/jquery-3.4.1.min.js"></script>
+    <script src="./assets/js/jquery-3.4.1.min.js"></script>
     <script>window.jQuery || document.write('<script src="/static/js/jquery-3.4.1.min.js"><\/script>')</script>
-    <script src="./assets/popper.min.js"></script>
-    <script src="./assets/bootstrap.min.js"></script>
+    <script src="./assets/js/popper.min.js"></script>
+    <script src="./assets/js/bootstrap.min.js"></script>
 
     <!-- Icons -->
-    <script src="./assets/feather.min.js"></script>
+    <script src="./assets/js/feather.min.js"></script>
     <script>
         // Initalizes feather icons plugin
         // URL: https://feathericons.com/
         feather.replace()
-    </script>    
+    </script>
 
     <script>
         $(document).ready(function () {

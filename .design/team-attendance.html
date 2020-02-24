@@ -21,6 +21,9 @@
     <!-- Custom CSS -->
     <link href="./assets/css/styles.css" rel="stylesheet">
 
+    <!-- Select 2 CSS -->
+    <link href="./assets/css/select2.min.css" rel="stylesheet">
+
 </head>
 
 <body data-gr-c-s-loaded="true">
@@ -75,7 +78,18 @@
                 <!-- Attendance -->
                 <div class="col-md-12">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="select-team-member"><strong>Team Members</strong></label>
+                                <select name="teamMember" class="form-control" id="select-team-member">
+                                    <option value="1">Jack</option>
+                                    <option value="2">Jill</option>
+                                    <option value="3">Joe</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 mt-3">
                             <div class="table-responsive">
                                 <table class="table-striped table-hover w-100">
                                     <thead>
@@ -115,7 +129,7 @@
         </div>
     </div>
 
-    <input type="hidden" name="active_nav_class" id="active-nav-class" value="attendance">
+    <input type="hidden" name="active_nav_class" id="active-nav-class" value="team-attendance">
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -132,6 +146,9 @@
         feather.replace()
     </script>
 
+    <!-- Select 2 JS -->
+    <script src="./assets/js/select2.min.js"></script>
+
     <script>
         $(document).ready(function () {
             // To highlight current page link in side navigation bar
@@ -145,6 +162,9 @@
                 html: true,
                 trigger: 'hover'
             })
+
+            // Team-Member select 2 plugin init
+            $('#select-team-member').select2();
         });
     </script>
 
