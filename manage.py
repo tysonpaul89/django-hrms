@@ -7,6 +7,12 @@ import sys
 def main():
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'hrms.settings')
     try:
+        # Add the apps directoriy to Python's path. In production it will
+        # be necessary to add the apps directory to the path, too.
+        from os.path import abspath, dirname, join
+        PROJECT_ROOT = abspath(dirname(__file__))
+        sys.path.append(join(PROJECT_ROOT, "apps"))
+
         from django.core.management import execute_from_command_line
     except ImportError as exc:
         raise ImportError(

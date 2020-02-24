@@ -2,3 +2,8 @@
 .requiredField > .asteriskField {
     color: red;
 }
+
+/* To show not allowed pointer in disabled button */
+.btn-disabled {
+    cursor: not-allowed !important;
+}

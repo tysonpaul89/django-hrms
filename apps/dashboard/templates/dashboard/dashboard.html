@@ -1,0 +1,226 @@
+{% extends '_base.html' %}
+
+{% block title %}Dashboard{% endblock title %}
+
+{% block page_header %}Dashboard{% endblock page_header %}
+
+{% block active_nav_class %}dashboard{% endblock active_nav_class %}
+
+{% block content %}
+<input type="hidden" id="clock-in-status-url" name="clock_in_status_url" value="{% url 'clock-in-status' %}">
+<input type="hidden" id="clock-user-url" name="clock_user_url" value="{% url 'clock-user' %}">
+<input type="hidden" id="last-clock-data-url" name="last_clock_data_url" value="{% url 'last-clock-data-url' %}">
+<div class="col-md-12 mt-2" id="alert-message"></div>
+
+<!-- Dashboard -->
+<div class="col-md-12">
+    <div class="row">
+
+        <!-- Last Punch In/Out -->
+        <div class="col-md-3">
+            <div class="card text-white bg-secondary attendance-summary">
+                <div class="card-body">
+                <table>
+                    <tbody>
+                    <tr>
+                        <td><span class="h5">Last Punch In at</span></td>
+                        <td>&nbsp;</td>
+                        <td><span class="h4" id="last-clocked-in"></span>&nbsp;<small>hrs : mins</small></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <hr>
+
+                <table>
+                    <tbody>
+                    <tr>
+                        <td><span class="h5">Last Punch Out at</span></td>
+                        <td>&nbsp;</td>
+                        <td><span class="h4" id="last-clocked-out"></span>&nbsp;<small>hrs : mins</small></td>
+                    </tr>
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+        <!-- /.col-md-3 -->
+
+        <!-- Todays Attendance -->
+        <!-- <div class="col-md-3">
+            <div class="card text-white bg-secondary attendance-summary">
+                <div class="card-body">
+                <table>
+                    <tbody>
+                    <tr>
+                        <td><span class="h5">Gross Hours</span></td>
+                        <td>&nbsp;</td>
+                        <td><span class="h4">09:30</span>&nbsp;<small>hrs : mins</small></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <hr>
+
+                <table>
+                    <tbody>
+                    <tr>
+                        <td><span class="h5">Effective Hours</span></td>
+                        <td>&nbsp;  </td>
+                        <td><span class="h4">08:10</span>&nbsp;<small>hrs : mins</small></td>
+                    </tr>
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </div> -->
+        <!-- /.col-md-3 -->
+
+        <!-- Attendance Percentage -->
+        <!-- <div class="col-md-3">
+            <div class="card text-white bg-secondary attendance-summary">
+                <div class="card-body">
+                <table>
+                    <tbody>
+                    <tr>
+                        <td><span class="h5">Avg Hours / Day</span></td>
+                        <td>&nbsp;</td>
+                        <td><span class="h4">--</span>&nbsp;<small>hrs : mins</small></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <hr>
+
+                <table>
+                    <tbody>
+                    <tr>
+                        <td><span class="h5">On Time Arrival</span></td>
+                        <td>&nbsp;&nbsp;&nbsp;</td>
+                        <td><span class="h4">--%</span></td>
+                    </tr>
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </div> -->
+        <!-- /.col-md-3 -->
+
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /.col-md-12 -->
+
+<div class="col-md-12 mt-5">
+    <div class="card bg-light">
+    <div class="card-body">
+        <h4 class="card-title">Clock In/Out</h4>
+        <div class="row">
+            <div class="col-md-12">
+                <button id="clock-in" class="btn btn-lg btn-block btn-primary">Clock In&nbsp;<span data-feather="log-in">&nbsp;&nbsp;&nbsp;</span></button>
+            </div>
+
+            <div class="col-md-12 mt-2">
+                <button id="clock-out" class="btn btn-lg btn-block btn-danger">Clock Out&nbsp;<span data-feather="log-out"></span></button>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+<!-- /.col-md-12 -->
+<!-- Dashboard - END -->
+{% endblock content %}
+
+{% block additional_js %}
+<script>
+    $(document).ready(function(event) {
+        initalizeClockInOrOutButtonState()
+        getLastClockedInAndOutDetails()
+    });
+
+    // Clock In button click event
+    $(document).on('click', '#clock-in', function(event){
+        var clockInUserUrl = $.trim($('#clock-user-url').val())
+        $.get(clockInUserUrl, { status: 1 }, function(response) {
+            // Resets Clock In/Out button states
+            enableButton('#clock-in')
+            enableButton('#clock-out')
+
+            if (response.hasOwnProperty('status')) {
+                // Disable Clock In button
+                diableButton('#clock-in')
+            }
+        });
+    });
+
+    // Clock Out button click event
+    $(document).on('click', '#clock-out', function(event){
+        var clockInUserUrl = $.trim($('#clock-user-url').val())
+        $.get(clockInUserUrl, { status: 1 }, function(response) {
+            // Resets Clock In/Out button states
+            enableButton('#clock-in')
+            enableButton('#clock-out')
+
+            if (response.hasOwnProperty('status')) {
+                // Disable Clock Out button
+                diableButton('#clock-out')
+            }
+        });
+    });
+
+    /**
+     * Get the current clock status of the user to enable/disable clock In/Out button
+     */
+    function initalizeClockInOrOutButtonState() {
+        var clockInStatusUrl = $.trim($('#clock-in-status-url').val())
+        $.get(clockInStatusUrl, {}, function(response) {
+            try {
+                // Resets Clock In/Out button states
+                enableButton('#clock-in')
+                enableButton('#clock-out')
+
+                if (response.hasOwnProperty('clockIn')) {
+                    if (response.clockIn) {
+                       diableButton('#clock-in');
+                    } else {
+                        diableButton('#clock-out');
+                    }
+                }
+            } catch(err) {
+                console.error(err);
+            }
+        });
+    }
+
+    /**
+     * Gets the last clocked In and Out details and display it in page.
+     */
+    function getLastClockedInAndOutDetails() {
+        var lastClockedDetailsUrl = $.trim($('#last-clock-data-url').val())
+        $.get(lastClockedDetailsUrl, {}, function(response) {
+            try {
+                if (response.hasOwnProperty('lastClockedIn') && response.hasOwnProperty('lastClockedOut')) {
+                    $('#last-clocked-in').text(response.lastClockedIn);
+                    $('#last-clocked-out').text(response.lastClockedOut);
+                }
+            } catch(err) {
+                console.error(err);
+            }
+        });
+    }
+
+    /**
+     * Diables given button selector
+     */
+    function diableButton(selector) {
+        $(selector).prop('disabled', true).addClass('btn-disabled');
+    }
+
+    /**
+     * Enables given button selector
+     */
+    function enableButton(selector) {
+        $(selector).prop('disabled', false).removeClass('btn-disabled');
+    }
+</script>
+{% endblock additional_js %}

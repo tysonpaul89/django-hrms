@@ -37,6 +37,14 @@
         <div class="row">
             <nav class="col-md-2 d-none d-md-block bg-light sidebar">
                 <div class="sidebar-sticky">
+                    <ul class="nav flex-column mb-2 mt-5">
+                        <li class="nav-item">
+                            <a class="nav-link dashboard" href="{% url 'dashboard' %}">
+                                <span data-feather="user"></span>
+                                dashboard
+                            </a>
+                        </li>
+                    </ul>
                     <h6
                         class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
                         <span>Attendance</span>
@@ -63,6 +71,21 @@
                     class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
                     <h1 class="h2">{% block page_header %}{% endblock page_header %}</h1>
                 </div>
+
+                {% if messages %}
+                    <!-- Djang alert Messages -->
+                    <div class="col-md-12 mt-2">
+                        {% for message in messages %}
+                            <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} alert-dismissible fade show" role="alert">
+                                {{ message }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <!-- Djang alert Messages - END -->
+                {% endif %}
 
                 <div class="col-md-12">
                     {% block content %}{% endblock content %}

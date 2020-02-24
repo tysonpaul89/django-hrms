@@ -45,6 +45,7 @@ INSTALLED_APPS = [
 
     # Local Apps
     'users.apps.UsersConfig', # Contains custom user model.
+    'dashboard.apps.DashboardConfig',
     'attendance.apps.AttendanceConfig',
 ]
 
@@ -151,9 +152,10 @@ SITE_ID = 1
 
 # allauth configuration.
 # Docs: https://django-allauth.readthedocs.io/en/latest/configuration.html
-LOGIN_REDIRECT_URL = 'attendance'
+LOGIN_REDIRECT_URL = 'dashboard'
+LOGIN_URL = '/auth/login/' # Used in login_required auth decorator
 ACCOUNT_LOGOUT_ON_GET = True
-ACCOUNT_LOGOUT_REDIRECT_URL = '/auth/login/'
+ACCOUNT_LOGOUT_REDIRECT_URL = LOGIN_URL
 ACCOUNT_EMAIL_REQUIRED=True
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_USERNAME_REQUIRED = False

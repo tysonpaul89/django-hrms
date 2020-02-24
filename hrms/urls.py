@@ -21,6 +21,7 @@ urlpatterns = [
     path('', lambda r: redirect(reverse_lazy('attendance'))),
     path('admin/', admin.site.urls),
     path('auth/', include('allauth.urls')),
+    path('dashboard/', include('dashboard.urls')),
     path('attendance/', include('attendance.urls')),
 
 ]
