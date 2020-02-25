@@ -18,7 +18,7 @@ from django.urls import path, include, reverse_lazy
 from django.shortcuts import redirect
 
 urlpatterns = [
-    path('', lambda r: redirect(reverse_lazy('attendance'))),
+    path('', lambda r: redirect(reverse_lazy('dashboard'))),
     path('admin/', admin.site.urls),
     path('auth/', include('allauth.urls')),
     path('dashboard/', include('dashboard.urls')),

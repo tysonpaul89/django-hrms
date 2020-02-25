@@ -9,7 +9,7 @@
 {% block content %}
 <input type="hidden" id="clock-in-status-url" name="clock_in_status_url" value="{% url 'clock-in-status' %}">
 <input type="hidden" id="clock-user-url" name="clock_user_url" value="{% url 'clock-user' %}">
-<input type="hidden" id="last-clock-data-url" name="last_clock_data_url" value="{% url 'last-clock-data-url' %}">
+<input type="hidden" id="last-clocked-data-url" name="last_clocked_data_url" value="{% url 'last-clocked-data' %}">
 <div class="col-md-12 mt-2" id="alert-message"></div>
 
 <!-- Dashboard -->
@@ -17,7 +17,7 @@
     <div class="row">
 
         <!-- Last Punch In/Out -->
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="card text-white bg-secondary attendance-summary">
                 <div class="card-body">
                 <table>
@@ -156,7 +156,7 @@
     // Clock Out button click event
     $(document).on('click', '#clock-out', function(event){
         var clockInUserUrl = $.trim($('#clock-user-url').val())
-        $.get(clockInUserUrl, { status: 1 }, function(response) {
+        $.get(clockInUserUrl, { status: 0 }, function(response) {
             // Resets Clock In/Out button states
             enableButton('#clock-in')
             enableButton('#clock-out')
@@ -196,7 +196,7 @@
      * Gets the last clocked In and Out details and display it in page.
      */
     function getLastClockedInAndOutDetails() {
-        var lastClockedDetailsUrl = $.trim($('#last-clock-data-url').val())
+        var lastClockedDetailsUrl = $.trim($('#last-clocked-data-url').val())
         $.get(lastClockedDetailsUrl, {}, function(response) {
             try {
                 if (response.hasOwnProperty('lastClockedIn') && response.hasOwnProperty('lastClockedOut')) {
